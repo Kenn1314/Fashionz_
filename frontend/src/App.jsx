@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Toaster } from "sonner";
 import UserLayout from "./components/Layout/UserLayout";
 import Home from "./pages/Home";
-import { Toaster } from "sonner";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -11,6 +14,9 @@ const App = () => {
         {/* User page layout */}
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home />} />
+          <Route element={<Login />} path="login" />
+          <Route element={<Register />} path="register" />
+          <Route element={<Profile />} path="profile" />
         </Route>
         {/* Admin page layout */}
         <Route>
