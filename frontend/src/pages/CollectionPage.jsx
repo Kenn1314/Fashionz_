@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { FaFilter } from "react-icons/fa"
 import FilterSideBar from '../components/Products/FilterSideBar';
+import SortOptions from '../components/Products/SortOptions';
+import ProductGrid from '../components/Products/ProductGrid';
 
 const CollectionPage = () => {
     const [products, setProducts] = useState([]);
@@ -20,7 +22,9 @@ const CollectionPage = () => {
     useEffect(() => {
         document.addEventListener("mousedown", handleClickOutside)
 
-        document.removeEventListener("mousedown", handleClickOutside)
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside)
+        }
     })
 
     useEffect(() => {
@@ -96,7 +100,10 @@ const CollectionPage = () => {
                 <h2 className="text-2xl uppercase mb-4">All Collection</h2>
 
                 {/* Sort Options */}
-                
+                <SortOptions />
+
+                {/* Products display */}
+                <ProductGrid products={products}/>
             </div>
         </div>
     )

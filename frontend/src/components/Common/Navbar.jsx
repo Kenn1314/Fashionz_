@@ -63,7 +63,7 @@ const Navbar = () => {
                         Menu
                     </h2>
                     <nav className='space-y-4'>
-                        <Link to="#" onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>MEN</Link>
+                        <Link to="/collections/all" onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>MEN</Link>
                         <Link to="#" onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>WOMAN</Link>
                         <Link to="#" onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>TOP WEAR</Link>
                         <Link to="#" onClick={toggleNavDrawer} className='block text-gray-600 hover:text-black'>BOTTOM WEAR</Link>
