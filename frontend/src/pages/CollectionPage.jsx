@@ -14,7 +14,8 @@ const CollectionPage = () => {
     }
 
     const handleClickOutside = (e) => {
-        if(sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+        console.log(e.target)
+        if(sidebarRef.current && !sidebarRef.current.contains(e.target) && e.target.id != "filter_toggle_button") {
             setIsSidebarOpen(false);
         }
     }
@@ -25,7 +26,7 @@ const CollectionPage = () => {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    })
+    }, [])
 
     useEffect(() => {
         setTimeout(() => {
@@ -87,7 +88,7 @@ const CollectionPage = () => {
     return (
         <div className="flex flex-col lg:flex-row">
             {/* MOBILE FILTER BUTTON */}
-            <button onClick={toggleSidebar} className="lg:hidden border p-2 flex justify-center items-center">
+            <button onClick={toggleSidebar} id="filter_toggle_button" className="lg:hidden border p-2 flex justify-center items-center">
                 <FaFilter className='mr-2' /> Filters
             </button>
 
