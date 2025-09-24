@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
+import PayPalButton from '../components/Cart/PayPalButton';
 
 const cart = {
     products: [
@@ -23,6 +24,7 @@ const cart = {
 
 const Checkout = () => {
     const navigate = useNavigate();
+    const [checkoutId, setCheckoutId] = useState(null)
     const [shippingAddress, setShippingAddress] = useState({
         firstName: "",
         lastName: "",
@@ -33,12 +35,22 @@ const Checkout = () => {
         phone: "",
     });
 
+    const handleCreateCheckout = (e) => {
+        e.preventDefault();
+        setCheckoutId(123)
+    }
+
+    const handlePaymentSuccess = (details) => {
+        console.log("Payment Success", details)
+        navigate("/order-confirmation")
+    }
+
     return (
         <div className='grid grid-cols-1 lg: grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter'>
             {/* Left side */}
             <div className="bg-white rounded-lg p-6">
                 <h2 className="text-2xl uppercase mb-6">Checkout</h2>
-                <form>
+                <form onSubmit={handleCreateCheckout}>
                     <h3 className='text-lg mb-4'>Contact Details</h3>
                     <div className="mb-4">
                         <label className="block text-gray-700">Email</label>
@@ -153,6 +165,20 @@ const Checkout = () => {
                             className='w-full p-2 border rounded'
                             required
                         />
+                    </div>
+
+                    <div className="mt-6">
+                        {
+                            !checkoutId ? (
+                                <button type="submit" className='w-full bg-black rounded-lg text-white py-3'>Continue to Payment</button>
+                            ) :
+                            (
+                                <div>
+                                    <h3 className="text-lg mb-4">Pay with Paypal</h3>
+                                    <PayPalButton amount={100} onSuccess={handlePaymentSuccess} onError={(err) => alert("Payment failed. Please try again.")} />
+                                </div>
+                            )
+                        }
                     </div>
                 </form>
             </div>
