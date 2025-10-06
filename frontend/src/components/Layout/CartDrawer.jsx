@@ -29,7 +29,10 @@ const CartDrawer = ({drawerIsOpen, toggleCartDrawer}) => {
             </div>
 
             <div className="p-4 bg-white sticky bottom-0">
-                <button onClick={() => navigate("checkout")} className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
+                <button onClick={() => {
+                    toggleCartDrawer(false)
+                    navigate("checkout")
+                }} className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition">
                     Checkout
                 </button>
                 <p className="text-sm text-gray-700 tracking-tighter mt-2 text-center">
