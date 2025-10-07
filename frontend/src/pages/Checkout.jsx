@@ -46,7 +46,7 @@ const Checkout = () => {
     }
 
     return (
-        <div className='grid grid-cols-1 lg: grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto py-10 px-6 tracking-tighter'>
             {/* Left side */}
             <div className="bg-white rounded-lg p-6">
                 <h2 className="text-2xl uppercase mb-6">Checkout</h2>
@@ -172,12 +172,12 @@ const Checkout = () => {
                             !checkoutId ? (
                                 <button type="submit" className='w-full bg-black rounded-lg text-white py-3'>Continue to Payment</button>
                             ) :
-                            (
-                                <div>
-                                    <h3 className="text-lg mb-4">Pay with Paypal</h3>
-                                    <PayPalButton amount={100} onSuccess={handlePaymentSuccess} onError={(err) => alert("Payment failed. Please try again.")} />
-                                </div>
-                            )
+                                (
+                                    <div>
+                                        <h3 className="text-lg mb-4">Pay with Paypal</h3>
+                                        <PayPalButton amount={100} onSuccess={handlePaymentSuccess} onError={(err) => alert("Payment failed. Please try again.")} />
+                                    </div>
+                                )
                         }
                     </div>
                 </form>
@@ -191,7 +191,7 @@ const Checkout = () => {
                         cart.products.map((product, index) => (
                             <div key={index} className='flex items-start justify-between py-2 border-b'>
                                 <div className="flex items-start">
-                                    <img src={product.image} alt={product.name} className='w-20 h-24 object-cover mr-4'/>
+                                    <img src={product.image} alt={product.name} className='w-20 h-24 object-cover mr-4' />
                                     <div>
                                         <h3 className='text-md'>{product.name}</h3>
                                         <p className='text-gray-500'>Size: {product.size}</p>
@@ -202,6 +202,20 @@ const Checkout = () => {
                             </div>
                         ))
                     }
+                </div>
+                <div className="mb-4">
+                    <div className="flex justify-between">
+                        <span className="text-lg">Subtotal</span>
+                        <span className="text-xl">${cart.totalPrice}</span>
+                    </div>
+                    <div className="flex justify-between pb-4 border-b">
+                        <span className="text-lg">Shipping</span>
+                        <span className="text-lg">Free</span>
+                    </div>
+                    <div className="flex justify-between pt-4">
+                        <span className="text-lg">Total</span>
+                        <span className="text-xl">${cart.totalPrice}</span>
+                    </div>
                 </div>
             </div>
         </div>

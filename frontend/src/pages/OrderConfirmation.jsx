@@ -32,6 +32,13 @@ const checkout = {
 
 
 const OrderConfirmationPage = () => {
+
+    function getEstimatedDeliveryDate (purchaseDate) {
+        let date = new Date(purchaseDate);
+        date.setDate(date.getDate() + 10);
+        return date.toLocaleDateString();
+    }
+
     return (
         <div className="mx-auto">
             <div className="flex flex-col justify-center items-center mb-10">
@@ -42,7 +49,7 @@ const OrderConfirmationPage = () => {
                     <div className="mb-16 flex flex-col sm:flex-row sm:justify-between">
                         <div className="flex flex-col">
                             <p className="text-lg font-bold">Order ID: {checkout._id || ""}</p>
-                            <p className="text-sm text-gray-500">Order date: {checkout.createdAt.toLocaleDateString() || ""}</p>
+                            <p className="text-sm text-gray-500">Order date: {getEstimatedDeliveryDate(checkout.createdAt)}</p>
                         </div>
                         <div>
                             <p className="text-green-700 text-sm">Estimated Delivery: 23/12/2024</p>
