@@ -14,7 +14,6 @@ const CollectionPage = () => {
     }
 
     const handleClickOutside = (e) => {
-        console.log(e.target)
         if(sidebarRef.current && !sidebarRef.current.contains(e.target) && e.target.id != "filter_toggle_button") {
             setIsSidebarOpen(false);
         }

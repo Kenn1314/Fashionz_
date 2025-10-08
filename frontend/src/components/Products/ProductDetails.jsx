@@ -91,12 +91,10 @@ const ProductDetails = () => {
         // return () => {
         //     if (timeoutRef.current) clearTimeout(timeoutRef.current);
         // };
-        console.log("here")
     }, [selectedProduct]);
 
     return (
         <section className="p-6">
-            {/* BEST SELLER SECTION */}
             <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg">
                 <div className="flex flex-col md:flex-row">
 
@@ -104,14 +102,16 @@ const ProductDetails = () => {
                     <div className="hidden md:flex flex-col space-y-4 mr-6">
                         {
                             selectedProduct.images.map((image, index) => (
-                                <img src={image.url} alt={image.altText || `Thumbnail ${index}`} className={`h-20 w-20 object-cover rounded-lg cursor-pointer border ${mainImage == image.url ? "border-black border-4" : "border-gray-300"}`} onClick={() => { setMainImage(image.url) }} />
+                                <img key={index} src={image?.url} alt={image.altText || `Thumbnail ${index}`} className={`h-20 w-20 object-cover rounded-lg cursor-pointer border ${mainImage == image.url ? "border-black border-4" : "border-gray-300"}`} onClick={() => { setMainImage(image.url) }} />
                             ))
                         }
                     </div>
 
                     <div className="md:w-1/2">
                         <div className="mb-4">
-                            <img src={mainImage} alt="Main Product" className="w-full h-auto object-cover rounded-lg" />
+                            {
+                                mainImage ? <img src={mainImage} alt="Main Product" className="w-full h-auto object-cover rounded-lg" /> : null
+                            }
                         </div>
                     </div>
 
@@ -119,7 +119,7 @@ const ProductDetails = () => {
                     <div className="md:hidden flex overscroll-x-scroll space-x-4 mb-4">
                         {
                             selectedProduct.images.map((image, index) => (
-                                <img src={image.url} alt={image.altText || `Thumbnail ${index}`} className={`h-20 w-20 object-cover rounded-lg cursor-pointer border ${mainImage == image.url ? "border-black border-4" : "border-gray-300"}`} onClick={() => { setMainImage(image.url) }} />
+                                <img key={index} src={image.url} alt={image.altText || `Thumbnail ${index}`} className={`h-20 w-20 object-cover rounded-lg cursor-pointer border ${mainImage == image.url ? "border-black border-4" : "border-gray-300"}`} onClick={() => { setMainImage(image.url) }} />
 
                             ))
                         }

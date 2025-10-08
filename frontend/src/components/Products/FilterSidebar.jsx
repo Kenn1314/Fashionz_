@@ -108,12 +108,10 @@ const FilterSideBar = () => {
         <h3 className="text-l text-gray-700 mb-4">Category</h3>
         {
           categories.map((item, key) => (
-            <>
-              <div class="flex items-center mb-4">
-                <input id={`category-radio-${key}`} checked={filters.category === item} onChange={handleFilterChange} type="radio" value={`${item}`} name={`category`} class="w-4 h-4 text-blue-500 bg-gray-300 focus:ring-blue-400" />
-                <label for={`category-radio-${key}`} class="ms-2 text-sm text-gray-700">{item}</label>
-              </div>
-            </>
+            <div key={key} className="flex items-center mb-4">
+              <input id={`category-radio-${key}`} checked={filters.category === item} onChange={handleFilterChange} type="radio" value={`${item}`} name={`category`} className="w-4 h-4 text-blue-500 bg-gray-300 focus:ring-blue-400" />
+              <label for={`category-radio-${key}`} className="ms-2 text-sm text-gray-700">{item}</label>
+            </div>
           ))
         }
       </div>
@@ -123,12 +121,10 @@ const FilterSideBar = () => {
         <h3 className="text-l text-gray-700 mb-4">Genders</h3>
         {
           genders.map((item, key) => (
-            <>
-              <div class="flex items-center mb-4">
-                <input id={`gender-radio-${key}`} checked={filters.gender === item} onChange={handleFilterChange} type="radio" value={`${item}`} name={`gender`} class="w-4 h-4 text-blue-500 bg-gray-300 focus:ring-blue-400" />
-                <label for={`gender-radio-${key}`} class="ms-2 text-sm text-gray-700">{item}</label>
-              </div>
-            </>
+            <div key={key} className="flex items-center mb-4">
+              <input id={`gender-radio-${key}`} checked={filters.gender === item} onChange={handleFilterChange} type="radio" value={`${item}`} name={`gender`} className="w-4 h-4 text-blue-500 bg-gray-300 focus:ring-blue-400" />
+              <label for={`gender-radio-${key}`} className="ms-2 text-sm text-gray-700">{item}</label>
+            </div>
           ))
         }
       </div>

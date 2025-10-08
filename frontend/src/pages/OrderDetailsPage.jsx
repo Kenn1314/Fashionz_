@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const OrderConfirmationPage = () => {
     let [orderDetails, setOrderDetails] = useState(null);
@@ -35,15 +35,15 @@ const OrderConfirmationPage = () => {
     }, []);
 
     return (
-        <div className="flex justify-center mx-auto items-center w-[75%]">
+        <div className="flex justify-center mx-auto items-center w-[60%]">
             <div className="flex flex-col w-full">
-                <h2 className="font-bold">Order Details</h2>
-                <div className="my-4 border p-2">
+                <h1 className="font-bold text-3xl my-6">Order Details</h1>
+                <div className="border rounded-lg p-2 p-4 mb-4">
                     <div className="flex flex-col">
                         {/* ORDER INFO */}
-                        <div className="mb-2">
+                        <div className="mb-14">
                             <div className="flex justify-between mb-1">
-                                <span className="font-bold">Order ID: #{id}</span>
+                                <span className="font-bold text-xl">Order ID: #{id}</span>
                                 <span className={`${orderDetails?.isPaid ? "bg-green-100 text-green-900" : "bg-red-100 text-red-900"} rounded p-1 font-bold text-xs`}>{orderDetails?.isPaid ? "Approved" : "Declined"}</span>
                             </div>
                             <div className="flex justify-between">
@@ -53,14 +53,64 @@ const OrderConfirmationPage = () => {
                         </div>
 
                         {/* PAYMENT INFO AND SHIPPING INFO */}
-                        <div className="w-[75%] grid grid-cols-1 lg:grid-cols-2">
+                        <div className="w-[75%] grid grid-cols-1 lg:grid-cols-2 mb-14">
                             <div>
-                                ha
+                                <h2 className="font-bold">Payment Info</h2>
+                                <p>Payment method: {orderDetails?.paymentMethod}</p>
+                                <p>Status: {orderDetails?.isPaid ? "Paid" : "Pending payment"}</p>
                             </div>
                             <div>
-                                hi
+                                <h2 className="font-bold">Shipping Info</h2>
+                                <p>Shipping method: {orderDetails?.shippingMethod}</p>
+                                <p>Address: {orderDetails?.shippingAddress.city}, {orderDetails?.shippingAddress.country}</p>
                             </div>
                         </div>
+
+                        {/* TABLE CONTENT SHOWING */}
+                        <div className="overflow-x-auto">
+                            <h2 className="font-bold">Products</h2>
+                            <table className="min-w-full text-gray-600 mb-4">
+                                <thead className="bg-gray-100">
+                                    <tr>
+                                        <th className="py-2 px-4">Name</th>
+                                        <th className="py-2 px-4">Unit Price</th>
+                                        <th className="py-2 px-4">Quantity</th>
+                                        <th className="py-2 px-4">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        orderDetails?.orderItems.map((item, key) => (
+                                            <tr key={item.productId} className="border-b">
+                                                <td className="py-2 px-4 flex items-center">
+                                                    <img 
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        className="w-12 h-12 object-cover rounded-lg mr-4"
+                                                    />
+                                                    <Link
+                                                        to={`/product/${item.productId}`}
+                                                        className="text-blue-500 hover:underline"
+                                                    >
+                                                        {item.name}
+                                                    </Link>
+                                                </td>
+                                                <td className="py-2 px-4">{item.price}</td>
+                                                <td className="py-2 px-4">{item.quantity}</td>
+                                                <td className="py-2 px-4">{item.quantity * item.price}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <Link
+                            to='/my-orders'
+                            className="text-blue-500 hover:underline"
+                        >
+                            Back to My Orders
+                        </Link>
                     </div>
                 </div>
             </div>
