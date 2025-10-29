@@ -26,12 +26,15 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="hidden md:flex space-x-6">
-                    <Link to="/collections/all" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Men</Link>
-                    <Link to="#" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Woman</Link>
-                    <Link to="#" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Top Wear</Link>
-                    <Link to="#" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Bottom Wear</Link>
+                    <Link to="/collections/all?gender=Men" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Men</Link>
+                    <Link to="/collections/all?gender=Women" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Woman</Link>
+                    <Link to="/collections/all?category=Top+Wear" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Top Wear</Link>
+                    <Link to="/collections/all?category=Bottom+Wear" className="text-gray-700 hover:text-black text-sm font-medium uppercase">Bottom Wear</Link>
                 </div>
                 <div className="flex items-center space-x-4">
+                    <Link to="/admin" className="bg-black rounded-md text-xs text-white px-2 py-[0.5%]">
+                        Admin
+                    </Link>
                     <Link to="/profile" className="hover:text-black">
                         <HiOutlineUser className="h-6 w-6 text-gray-700" />
                     </Link>
